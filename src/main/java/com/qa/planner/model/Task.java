@@ -24,6 +24,9 @@ public class Task {
 	@Column(nullable = false)
 	private boolean complete;
 
-	@Column(nullable = false)
+	@Column
 	private Timestamp timeComplete;
+
+	@Column
+	private int assignee;
 }
