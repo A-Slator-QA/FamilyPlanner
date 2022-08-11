@@ -7,10 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.Data;
 
 @Entity
+@Table
 @Data
 public class Task {
 
@@ -32,4 +34,11 @@ public class Task {
 
 	@Column
 	private int assignee;
+
+	public Task() {
+	}
+
+	public Task(String taskName) {
+		this.taskName = taskName;
+	}
 }
