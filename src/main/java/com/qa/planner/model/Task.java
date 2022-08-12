@@ -9,11 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Task {
 
 	@Id
@@ -35,10 +39,13 @@ public class Task {
 	@Column
 	private int assignee;
 
-	public Task() {
+	public Task(Long taskId, String taskName) {
+		this.taskId = taskId;
+		this.taskName = taskName;
 	}
 
 	public Task(String taskName) {
 		this.taskName = taskName;
 	}
+
 }
