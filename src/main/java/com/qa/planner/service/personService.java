@@ -1,5 +1,5 @@
 package com.qa.planner.service;
 
-public class personService {
+public class PersonService {
 
 }
