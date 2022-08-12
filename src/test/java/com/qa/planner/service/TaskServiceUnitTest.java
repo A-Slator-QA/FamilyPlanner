@@ -50,7 +50,7 @@ public class TaskServiceUnitTest {
 	}
 
 	@Test
-	public void completeTask_ValidId_CompleteTask() {
+	public void updateTask_ValidId_CompleteTask() {
 		Long testId = 1L;
 		Task completeTask = new Task("Hoover");
 		Optional<Task> mockOutputValid = Optional.ofNullable(new Task(1L, "Hoover", false, null, true, 1));
@@ -60,6 +60,21 @@ public class TaskServiceUnitTest {
 		Mockito.when(this.repo.save(expectedOutput)).thenReturn(expectedOutput);
 
 		assertEquals(expectedOutput, this.service.updateTask(expectedOutput, 1L));
+		Mockito.verify(this.repo, Mockito.times(1)).save(expectedOutput);
+		Mockito.verify(this.repo, Mockito.times(1)).findById(testId);
+	}
+
+	@Test
+	public void updateTask_ValidId_AssignTask() {
+		Long testId = 1L;
+		Task assignTask = new Task("Wake up");
+		Optional<Task> mockOutputValid = Optional.ofNullable(new Task(1L, "Wake up", false, null, true, 1));
+		Task expectedOutput = new Task(1L, "Wake up", false, null, true, 1);
+
+		Mockito.when(this.repo.findById(testId)).thenReturn(mockOutputValid);
+		Mockito.when(this.repo.save(expectedOutput)).thenReturn(expectedOutput);
+
+		assertEquals(expectedOutput, this.service.assignTask(expectedOutput, 1L));
 		Mockito.verify(this.repo, Mockito.times(1)).save(expectedOutput);
 		Mockito.verify(this.repo, Mockito.times(1)).findById(testId);
 	}
