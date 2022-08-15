@@ -39,7 +39,8 @@ public class PersonService {
 		Person oldPerson = currentPerson.get();
 		oldPerson.setName(updatePerson.getName());
 		oldPerson.setAge(updatePerson.getAge());
-		oldPerson.setParent(updatePerson.getParent());
+		oldPerson.setParent(updatePerson.isParent());
+		return repo.save(oldPerson);
 	}
 
 	public boolean deletePerson(Long id) {
