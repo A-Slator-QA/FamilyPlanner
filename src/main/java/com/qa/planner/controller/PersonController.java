@@ -1,5 +1,5 @@
 package com.qa.planner.controller;
 
-public class personController {
+public class PersonController {
 
 }
