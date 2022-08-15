@@ -1,19 +1,21 @@
+drop schema if exists familyPlanner;
+
 create database if not exists familyPlanner;
 
 use familyPlanner;
 
 create table if not exists person(
 	personId int auto_increment not null,
-    name varchar(40) not null,
+    `name` varchar(40) not null,
     age int not null,
-    parent boolean,
+    parent boolean default false,
     primary key(personId)
 );
 
 create table if not exists task(
 	taskId int auto_increment not null,
-    title varchar(40) not null,
-    completed boolean default false,
+    taskName varchar(40) not null,
+    complete boolean default false,
     timeComplete timestamp,
     assigned boolean default false,
     assignee int,
