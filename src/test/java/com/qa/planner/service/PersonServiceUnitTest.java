@@ -74,12 +74,11 @@ public class PersonServiceUnitTest {
 		Mockito.verify(this.repo, Mockito.times(1)).findById(testId);
 	}
 
-	@Test
-	public void deletePerson_ValidId_DeletePerson() {
-		Long testId = 1L;
-		Person deletePerson = new Person("Dan", 25, false);
-		Optional<Person> mockOutputValid = Optional.ofNullable(new Person(1L, "Dan", 25, false));
-
-	}
+//	@Test
+//	public void deletePerson_ValidId_DeletePerson() {
+//		Long testId = 1L;
+//		Person deletePerson = new Person("Dan", 25, false);
+//		Optional<Person> mockOutputValid = Optional.ofNullable(new Person(1L, "Dan", 25, false));
+//	}
 
 }
