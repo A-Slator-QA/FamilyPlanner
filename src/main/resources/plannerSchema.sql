@@ -15,6 +15,7 @@ create table if not exists task(
     title varchar(40) not null,
     completed boolean default false,
     timeComplete timestamp,
+    assigned boolean default false,
     assignee int,
     primary key (taskId),
     foreign key (assignee) references person(personId)
