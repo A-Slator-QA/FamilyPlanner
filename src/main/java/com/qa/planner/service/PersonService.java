@@ -37,7 +37,7 @@ public class PersonService {
 	public Person updatePerson(Person updatePerson, Long id) {
 		Optional<Person> currentPerson = this.repo.findById(id);
 		Person oldPerson = currentPerson.get();
-		oldPerson.setName(updatePerson.getName());
+		oldPerson.setPersonName(updatePerson.getPersonName());
 		oldPerson.setAge(updatePerson.getAge());
 		oldPerson.setParent(updatePerson.isParent());
 		return repo.save(oldPerson);
