@@ -13,6 +13,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.planner.model.Task;
@@ -35,7 +36,7 @@ public class TaskControllerIntegrationTest {
 		String testTaskAsJSON = this.mapper.writeValueAsString(testTask);
 
 		mvc.perform(post("/home/createTask").content(testTaskAsJSON).contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isCreated()).andExpect(content().json(testTaskAsJSON));
+				.andExpect(status().isCreated()).andExpect((ResultMatcher) content().json(testTaskAsJSON));
 
 	}
 
