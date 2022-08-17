@@ -46,21 +46,27 @@ public class TaskController {
 		return new ResponseEntity<List<Task>>(taskData, HttpStatus.OK);
 	}
 
-	@PutMapping("/assignTask/{id}")
-	public ResponseEntity<Task> assignTask(@RequestBody Task task, @PathVariable Long id) {
-		Task assignTask = service.assignTask(task, id);
+	@PutMapping("/updateTask/{taskId}")
+	public ResponseEntity<Task> updateTask(@RequestBody Task task, @PathVariable Long taskId) {
+		Task updateTask = service.updateTask(task, taskId);
+		return new ResponseEntity<Task>(updateTask, HttpStatus.OK);
+	}
+
+	@PutMapping("/assignTask/{taskId}")
+	public ResponseEntity<Task> assignTask(@RequestBody Task task, @PathVariable Long taskId) {
+		Task assignTask = service.assignTask(task, taskId);
 		return new ResponseEntity<Task>(assignTask, HttpStatus.OK);
 	}
 
-	@PutMapping("/completeTask/{id}")
-	public ResponseEntity<Task> completeTask(@RequestBody Task task, @PathVariable Long id) {
-		Task completeTask = service.completeTask(task, id);
+	@PutMapping("/completeTask/{taskId}")
+	public ResponseEntity<Task> completeTask(@RequestBody Task task, @PathVariable Long taskId) {
+		Task completeTask = service.completeTask(task, taskId);
 		return new ResponseEntity<Task>(completeTask, HttpStatus.OK);
 	}
 
-	@DeleteMapping("/deleteTask/{id}")
-	public ResponseEntity<Boolean> deleteTask(@PathVariable Long id) {
-		Boolean deletedTask = service.deleteTask(id);
+	@DeleteMapping("/deleteTask/{taskId}")
+	public ResponseEntity<Boolean> deleteTask(@PathVariable Long taskId) {
+		Boolean deletedTask = service.deleteTask(taskId);
 		return (deletedTask) ? new ResponseEntity<Boolean>(HttpStatus.NO_CONTENT)
 				: new ResponseEntity<Boolean>(HttpStatus.NOT_FOUND);
 	}

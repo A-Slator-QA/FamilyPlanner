@@ -34,12 +34,12 @@ public class TaskService {
 		return repo.findById(id).get();
 	}
 
-//	public Task updateTask (Task updateTask, Long id) {
-//		Optional<Task> currentTask = this.repo.findById(id);
-//		Task oldTask = currentTask.get();
-//		oldTask.setTaskName(updateTask.getTaskName());
-//		oldTask.set
-//	}
+	public Task updateTask(Task updateTask, Long id) {
+		Optional<Task> currentTask = this.repo.findById(id);
+		Task oldTask = currentTask.get();
+		oldTask.setTaskName(updateTask.getTaskName());
+		return repo.save(oldTask);
+	}
 
 	public Task assignTask(Task assignTask, Long id) {
 		Optional<Task> currentTask = this.repo.findById(id);
