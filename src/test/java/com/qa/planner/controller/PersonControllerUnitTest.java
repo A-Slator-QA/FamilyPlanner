@@ -51,12 +51,11 @@ public class PersonControllerUnitTest {
 	public void readPerson_ValidPerson_ReadAll() throws Exception {
 
 		List<Person> allPeople = Arrays.asList(
-				new Person ("Robert", 24, false),
-				new Person ("Kate", 22, false),
-				new Person ("Ian", 40, true),
+				new Person (1L, "Robert", 24, false),
+				new Person (2L, "Kate", 22, false),
+				new Person (3L, "Ian", 40, true)
 				);
 
-		// given(this.service .readAllPeople()).willReturn(allPeople);
 
 		Mockito.when(this.service.readAllPeople().thenReturn(allPeople));
 
