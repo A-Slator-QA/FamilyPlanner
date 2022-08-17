@@ -1,7 +1,5 @@
 package com.qa.planner.model;
 
-import java.sql.Timestamp;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,9 +29,6 @@ public class Task {
 
 	@Column(nullable = false, columnDefinition = "boolean default false")
 	private boolean complete;
-
-	@Column
-	private Timestamp timeComplete;
 
 	@Column(nullable = false, columnDefinition = "boolean default false")
 	private boolean assigned;
