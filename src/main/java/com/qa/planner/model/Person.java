@@ -38,6 +38,13 @@ public class Person {
 	@OneToMany(mappedBy = "assignee", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Task> tasks;
 
+	public Person(Long personId, String personName, int age, boolean parent) {
+		this.personId = personId;
+		this.personName = personName;
+		this.age = age;
+		this.parent = parent;
+	}
+
 	public Person(String personName, int age, boolean parent) {
 		this.personName = personName;
 		this.age = age;
