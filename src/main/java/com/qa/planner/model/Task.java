@@ -29,7 +29,7 @@ public class Task {
 	@Column(nullable = false)
 	private String taskName;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition = "boolean default false")
 	private boolean complete;
 
 	@Column
@@ -48,6 +48,14 @@ public class Task {
 
 	public Task(String taskName) {
 		this.taskName = taskName;
+	}
+
+	public Task(Long taskId, String taskName, boolean complete, boolean assigned) {
+		super();
+		this.taskId = taskId;
+		this.taskName = taskName;
+		this.complete = complete;
+		this.assigned = assigned;
 	}
 
 }
