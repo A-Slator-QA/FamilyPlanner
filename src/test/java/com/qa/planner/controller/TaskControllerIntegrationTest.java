@@ -20,7 +20,8 @@ import com.qa.planner.model.Task;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@Sql(scripts = { "classpath:PlannerSchema.sql", "classpath:plannerData.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(scripts = { "classpath:PlannerSchema.sql",
+		"classpath:plannerData.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 @ActiveProfiles("test")
 public class TaskControllerIntegrationTest {
 
@@ -32,7 +33,7 @@ public class TaskControllerIntegrationTest {
 
 	@Test
 	public void createIntegrationTest() throws Exception {
-		Task testTask = new Task(1L, "Sleep", false);
+		Task testTask = new Task(1L, "Sleep", false, false);
 		String testTaskAsJSON = this.mapper.writeValueAsString(testTask);
 
 		mvc.perform(post("/home/createTask").content(testTaskAsJSON).contentType(MediaType.APPLICATION_JSON))
