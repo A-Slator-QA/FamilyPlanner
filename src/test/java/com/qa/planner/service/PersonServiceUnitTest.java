@@ -38,12 +38,17 @@ public class PersonServiceUnitTest {
 	@Test
 	public void readPerson_ReadAll() {
 		List<Person> people = new ArrayList();
-		people.add(new Person());
+		people.add(new Person(1L, "Simone", 28, false));
 
-		Mockito.when(this.service.readAllPeople(people)).thenReturn(people);
-		assertEquals(people, this.repo.findAllPeople());
+//		Mockito.when(this.service.readAllPeople()).thenReturn(people);
+//		assertEquals(people, this.repo.findAllPeople());
+//
+//		Mockito.verify(this.repo, Mockito.times(1)).findAll();
 
+		Mockito.when(this.service.readAllPeople()).thenReturn(people);
+		assertEquals(people, this.service.readAllPeople());
 		Mockito.verify(this.repo, Mockito.times(1)).findAll();
+
 	}
 
 	@Test
@@ -54,7 +59,7 @@ public class PersonServiceUnitTest {
 		Person expectedOutput = new Person(1L, "James", 42, true);
 
 		Mockito.when(this.repo.findById(testId)).thenReturn(mockOutputValid);
-		assertEquals(expectedOutput, this.service.readPerson(expectedOutput));
+		assertEquals(expectedOutput, this.service.readPerson(testId));
 
 		Mockito.verify(this.repo, Mockito.times(1)).findById(testId);
 	}
@@ -80,5 +85,23 @@ public class PersonServiceUnitTest {
 //		Person deletePerson = new Person("Dan", 25, false);
 //		Optional<Person> mockOutputValid = Optional.ofNullable(new Person(1L, "Dan", 25, false));
 //	}
+	@Test
+	public void deletePerson_ValidPerson_DeletePerson() {
+		Person deletePerson = new Person(1L, "Dan", 25, false);
+
+		Mockito.when(this.repo.findById(deletePerson.getPersonId())).thenReturn(Optional.of(deletePerson));
+		this.service.deletePerson(deletePerson.getPersonId());
+		Mockito.verify(this.repo, Mockito.times(1)).deleteById(deletePerson.getPersonId());
+	}
+
+	@Test
+	public void deletePerson_InvalidPerson_DeletePerson() {
+		Person testPerson = new Person(1L, "Dan", 25, false);
+		Long testId = 2L;
+
+		Mockito.when(this.repo.findById(2L)).thenReturn(Optional.of(testPerson));
+		this.service.deletePerson(2L);
+		Mockito.verify(this.repo, Mockito.times(1)).deleteById(2L);
+	}
 
 }
