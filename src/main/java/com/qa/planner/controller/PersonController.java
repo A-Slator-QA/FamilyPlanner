@@ -51,7 +51,7 @@ public class PersonController {
 		return new ResponseEntity<Person>(updatePerson, HttpStatus.OK);
 	}
 
-	@DeleteMapping("/depetePerson/{personId}")
+	@DeleteMapping("/deletePerson/{personId}")
 	public ResponseEntity<Boolean> deletePerson(@PathVariable Long personId) {
 		Boolean deletedPerson = service.deletePerson(personId);
 		return (deletedPerson) ? new ResponseEntity<Boolean>(HttpStatus.NO_CONTENT)

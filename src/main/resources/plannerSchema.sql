@@ -16,7 +16,6 @@ create table if not exists task(
 	taskId int auto_increment not null,
     taskName varchar(40) not null,
     complete boolean default false,
-    timeComplete timestamp,
     assigned boolean default false,
     assignee int,
     primary key (taskId),
