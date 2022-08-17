@@ -53,8 +53,8 @@ public class TaskServiceUnitTest {
 	public void updateTask_ValidId_CompleteTask() {
 		Long testId = 1L;
 		Task completeTask = new Task("Hoover");
-		Optional<Task> mockOutputValid = Optional.ofNullable(new Task(1L, "Hoover", false, null, true, 1));
-		Task expectedOutput = new Task(1L, "Hoover", false, null, true, 1);
+		Optional<Task> mockOutputValid = Optional.ofNullable(new Task(1L, "Hoover", false, true, 1));
+		Task expectedOutput = new Task(1L, "Hoover", false, true, 1);
 
 		Mockito.when(this.repo.findById(testId)).thenReturn(mockOutputValid);
 		Mockito.when(this.repo.save(expectedOutput)).thenReturn(expectedOutput);
@@ -68,8 +68,8 @@ public class TaskServiceUnitTest {
 	public void updateTask_ValidId_AssignTask() {
 		Long testId = 1L;
 		Task assignTask = new Task("Wake up");
-		Optional<Task> mockOutputValid = Optional.ofNullable(new Task(1L, "Wake up", false, null, true, 1));
-		Task expectedOutput = new Task(1L, "Wake up", false, null, true, 1);
+		Optional<Task> mockOutputValid = Optional.ofNullable(new Task(1L, "Wake up", false, true, 1));
+		Task expectedOutput = new Task(1L, "Wake up", false, true, 1);
 
 		Mockito.when(this.repo.findById(testId)).thenReturn(mockOutputValid);
 		Mockito.when(this.repo.save(expectedOutput)).thenReturn(expectedOutput);

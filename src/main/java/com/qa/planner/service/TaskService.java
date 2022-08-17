@@ -52,7 +52,6 @@ public class TaskService {
 		Optional<Task> currentTask = this.repo.findById(id);
 		Task oldTask = currentTask.get();
 		oldTask.setComplete(true);
-		oldTask.setTimeComplete(completeTask.getTimeComplete());
 		return repo.save(oldTask);
 	}
 
