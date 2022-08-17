@@ -17,6 +17,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.planner.model.Person;
@@ -48,17 +49,20 @@ public class PersonControllerUnitTest {
 
 	@Test
 	public void readPerson_ValidPerson_ReadAll() throws Exception {
-		Person readPerson = new Person();
-		readPerson.setName("Robert");
-		List<Person> allPeople = Arrays.asList(readPerson);
+
+		List<Person> allPeople = Arrays.asList(
+				new Person ("Robert", 24, false),
+				new Person ("Kate", 22, false),
+				new Person ("Ian", 40, true),
+				);
 
 		// given(this.service .readAllPeople()).willReturn(allPeople);
 
 		Mockito.when(this.service.readAllPeople().thenReturn(allPeople));
 
 		mvc.perform(get("/home/readPeople").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
-				.andExpect(jsonPath("$", hasSize(1))).andExpect(jsonPath("$[0].name", is(readPerson.getName())));
-		Mockito.veridy(this.service, Mockito.times(1)).readAllPeople();
+				.andExpect((ResultMatcher) jsonPath("$[0].name"));
+		Mockito.verify(this.service, Mockito.times(1)).readAllPeople();
 	}
 
 }
